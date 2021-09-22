@@ -19,12 +19,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@admin/*": ["src/app/modules/admin/*"],
+      "@admin/model/*": ["src/app/modules/admin/shared/models/*"],
+      "@admin/service/*": ["src/app/modules/admin/shared/services/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }
