@@ -1,1 +1,22 @@
-<p>projects works!</p>
+<h1>Projects</h1>
+<div class="row">
+  <div class="col-8 mx-auto">
+    <table class="table">
+      <thead>
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Date of Start</th>
+        <th>Team Size</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td>{{project.id}}</td>
+          <td>{{project.name}}</td>
+          <td>{{project.startDate}}</td>
+          <td>{{project.teamSize}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
