@@ -7,6 +7,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './shared/services/project.service';
 import { DashboardService } from './shared/services/dashboard.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent],
@@ -14,6 +15,7 @@ import { DashboardService } from './shared/services/dashboard.service';
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [ProjectService, DashboardService],
 })
