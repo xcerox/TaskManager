@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '@admin/model/project';
 import { ProjectService } from '@admin/service/project.service';
 import { ProjectUtils } from '@admin/util/project-utils';
+import { SearchOptions } from '@admin/model/search-options';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ProjectsComponent implements OnInit {
   projects: Array<Project> = [];
   project: Project = <Project>{};
   modalState!: "New" | "Edit";
+  searchOptions: SearchOptions = <SearchOptions>{field: "All"};
 
   constructor(private projectService: ProjectService) { }
 
@@ -25,6 +27,14 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getAll().subscribe((response: Array<Project>) => {
       this.projects = response;
     });
+  }
+
+  onFilter(){
+    if(this.searchOptions.field == "All") {
+      this.getProjects();
+    } else {
+      this.projectService.findBy(this.searchOptions).subscribe((projects: Array<Project>) => this.projects = projects, console.error);
+    }
   }
 
   onOpenCreateModal(): void {

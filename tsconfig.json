@@ -24,7 +24,10 @@
       "@admin/*": ["src/app/modules/admin/*"],
       "@admin/model/*": ["src/app/modules/admin/shared/models/*"],
       "@admin/service/*": ["src/app/modules/admin/shared/services/*"],
-      "@admin/util/*": ["src/app/modules/admin/shared/utils/*"]
+      "@admin/util/*": ["src/app/modules/admin/shared/utils/*"],
+      "@auth/*": ["src/app/modules/auth/*"],
+      "@auth/model/*": ["src/app/modules/auth/shared/models/*"],
+      "@auth/service/*": ["src/app/modules/auth/shared/services/*"]
     }
   },
   "angularCompilerOptions": {
