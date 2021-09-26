@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, } from 'rxjs';
 import { map } from 'rxjs/Operators';
 import { Project } from '@admin/model/project'
-import { ProjectUtils } from '@admin/util/project-utils';
+import { ProjectUtil } from '@admin/shared/utils/project-util';
 import { SearchOptions } from '@admin/model/search-options';
 
 @Injectable()
@@ -15,16 +15,16 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Array<Project>> {
-    return this.httpClient.get<Response>(this.PROJECT_URL).pipe(map((data: any) => data.map(ProjectUtils.objectToProject)));
+    return this.httpClient.get<Response>(this.PROJECT_URL).pipe(map((data: any) => data.map(ProjectUtil.objectToProject)));
   }
 
   create(project: Project): Observable<Project> {
-    const requestHeaders = new HttpHeaders().set(this.XSRF_TOKEN, sessionStorage.XSRFRequestToken);
-    return this.httpClient.post<Response>(this.PROJECT_URL, ProjectUtils.projectToObject(project), {headers: requestHeaders}).pipe(map(ProjectUtils.objectToProject));
+    const requestHeaders = new HttpHeaders().set(this.XSRF_TOKEN, localStorage.XSRFRequestToken);
+    return this.httpClient.post<Response>(this.PROJECT_URL, ProjectUtil.projectToObject(project), {headers: requestHeaders}).pipe(map(ProjectUtil.objectToProject));
   }
 
   update(project: Project): Observable<Project> {
-    return this.httpClient.put<Response>(this.PROJECT_URL, ProjectUtils.projectToObject(project)).pipe(map(ProjectUtils.objectToProject));
+    return this.httpClient.put<Response>(this.PROJECT_URL, ProjectUtil.projectToObject(project)).pipe(map(ProjectUtil.objectToProject));
   }
 
   delete(project: Project): Observable<string> {
@@ -32,6 +32,6 @@ export class ProjectService {
   }
 
   findBy(options: SearchOptions): Observable<Array<Project>> {
-    return this.httpClient.get<Response>(`${this.PROJECT_URL}/search/${options.field}/${options.value}`, {responseType: 'json'}).pipe(map((data: any) => data.map(ProjectUtils.objectToProject)));
+    return this.httpClient.get<Response>(`${this.PROJECT_URL}/search/${options.field}/${options.value}`, {responseType: 'json'}).pipe(map((data: any) => data.map(ProjectUtil.objectToProject)));
   }
 }

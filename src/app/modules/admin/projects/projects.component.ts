@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '@admin/model/project';
 import { ProjectService } from '@admin/service/project.service';
-import { ProjectUtils } from '@admin/util/project-utils';
+import { ProjectUtil } from '@admin/shared/utils/project-util';
 import { SearchOptions } from '@admin/model/search-options';
-
+import { LocationService } from '@admin/service/location.service';
+import { Location } from '@admin/model/location';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'projects',
@@ -16,16 +18,31 @@ export class ProjectsComponent implements OnInit {
   project: Project = <Project>{};
   modalState!: "New" | "Edit";
   searchOptions: SearchOptions = <SearchOptions>{field: "All"};
+  locations: Array<Location> = [];
+  isLoading!: boolean;
 
-  constructor(private projectService: ProjectService) { }
+  @ViewChild("newForm") newForm: NgForm | any = null;
+
+  constructor(private projectService: ProjectService, private locationService: LocationService) { }
 
   ngOnInit(): void {
     this.getProjects();
+    this.getLocations();
   }
 
   private getProjects(): void {
-    this.projectService.getAll().subscribe((response: Array<Project>) => {
-      this.projects = response;
+    this.isLoading = true;
+    this.projectService.getAll().subscribe((projects: Array<Project>) => {
+      this.projects = projects;
+      this.isLoading = false;
+    });
+  }
+
+  private getLocations(): void {
+    this.isLoading = true;
+    this.locationService.getAll().subscribe((locations) => {
+      this.locations = locations;
+      this.isLoading = false;
     });
   }
 
@@ -40,36 +57,43 @@ export class ProjectsComponent implements OnInit {
   onOpenCreateModal(): void {
     this.modalState = "New";
     this.project = <Project>{};
+    this.newForm.resetForm();
   }
 
   onSaveForm(){
-    if (ProjectUtils.isValidProject(this.project)) {
+    if (this.newForm.valid && ProjectUtil.isValidProject(this.project)) {
+      this.project.location = this.findLocation(this.project.locationId);
       if (this.modalState == "New") {
         this.projectService.create(this.project).subscribe(() => {
           this.project = <Project>{};
           this.getProjects();
-        }, console.error);
+        });
       } else if (this.modalState == "Edit") {
-        if (ProjectUtils.isProjectUpdated(this.project, this.projects)) {
+        if (ProjectUtil.isProjectUpdated(this.project, this.projects)) {
           this.projectService.update(this.project).subscribe(() => {
             this.project = <Project>{};
             this.getProjects();
-          }, console.error)
+          });
         }
       }
     }
   }
 
+  private findLocation(locationId:number): Location {
+    return <Location>this.locations.find(location => location.id == locationId);
+  }
+
   private findProject(projectId:number): Project {
-    return <Project>this.projects.find((project: Project) => project.id == projectId);
+    return <Project>this.projects.find(project => project.id == projectId);
   }
 
   onChooseProject(projectId:number): void {
+    this.newForm.resetForm();
     this.modalState = "Edit";
     this.project = {...this.findProject(projectId)};
   }
 
   onDeleteConfirmed(){
-    this.projectService.delete(this.project).subscribe(() => this.getProjects(), console.error);
+    this.projectService.delete(this.project).subscribe(() => this.getProjects());
   }
 }

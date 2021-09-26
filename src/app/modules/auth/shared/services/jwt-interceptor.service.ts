@@ -10,7 +10,7 @@ export class JwtInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    let user = JSON.parse(sessionStorage.session) || {token: ""};
+    let user = JSON.parse(localStorage.session) || {token: ""};
 
     req = req.clone({
       setHeaders: {

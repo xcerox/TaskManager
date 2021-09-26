@@ -11,12 +11,12 @@ export class AppComponent {
 
   constructor(private authService: AuthService) {}
 
-  isUserLogged(): boolean {
-    return this.authService.isUserLogged;
+  isUserAllowed(role:string): boolean {
+    return this.authService.isAuthenticated() && this.authService.isRoleExpected(role);
   }
 
   getUserName(): string {
-    return this.authService.currentUserName;
+    return this.authService.getUserName();
   }
 
   logout(): void {

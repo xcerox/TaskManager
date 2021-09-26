@@ -21,7 +21,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return sessionStorage.session?.token || null
+          return localStorage.session?.token || null
         }
       }
     })

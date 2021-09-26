@@ -1,0 +1,165 @@
+<div class="row">
+  <div class="col-md-8 col-xl-6 mx-auto">
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="card mt-1">
+        <div class="card-header">
+          <h4>Sign Up</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group form-row" formGroupName="personName">
+            <label for="firstName" class="col-md-4 col-form-label">First Name:</label>
+            <div class="col-md-8">
+              <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control"
+                formControlName="firstName"
+                [ngClass]="{'is-invalid': isInvalid('personName.firstName'), 'is-valid': isValid('personName.firstName')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('personName.firstName')">First name can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidMinLength('personName.firstName')">First name should contain at least 2
+                characters</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row" formGroupName="personName">
+            <label for="lastName" class="col-md-4 col-form-label">Last Name:</label>
+            <div class="col-md-8">
+              <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control"
+                formControlName="lastName"
+                [ngClass]="{'is-invalid': isInvalid('personName.lastName'), 'is-valid': isValid('personName.lastName')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('personName.lastName')">First name can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidMinLength('personName.lastName')">First name should contain at least 2
+                characters</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="email" class="col-md-4 col-form-label">Email:</label>
+            <div class="col-md-8">
+              <input type="text" name="email" id="email" placeholder="Email" class="form-control"
+                formControlName="email" [ngClass]="{'is-invalid': isInvalid('email'), 'is-valid': isValid('email')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('email')">Email can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidEmail('email')">Email is invalid</span>
+              <span class="text-danger" *ngIf="isInvalidUniqueEmail('email')">Email already exists</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="mobile" class="col-md-4 col-form-label">Mobile:</label>
+            <div class="col-md-8">
+              <input type="text" name="mobile" id="mobile" placeholder="Mobile" class="form-control"
+                formControlName="mobile" [ngClass]="{'is-invalid': isInvalid('mobile'), 'is-valid': isValid('mobile')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('mobile')">Mobile can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidPattern('mobile')">Mobile is invalid</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="dateOfBirth" class="col-md-4 col-form-label">Date of Birth:</label>
+            <div class="col-md-8">
+              <input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" class="form-control"
+                formControlName="dateOfBirth"
+                [ngClass]="{'is-invalid': isInvalid('dateOfBirth'), 'is-valid': isValid('dateOfBirth')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('dateOfBirth')">Date of Birth can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidMinAge('dateOfBirth')">Minimum Age must be 18</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="password" class="col-md-4 col-form-label">Password:</label>
+            <div class="col-md-8">
+              <input type="password" name="password" id="password" placeholder="Password" class="form-control"
+                formControlName="password"
+                [ngClass]="{'is-invalid': isInvalid('password'), 'is-valid': isValid('password')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('password')">Date of Birth can't be blank</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="confirmPassword" class="col-md-4 col-form-label">Confirm Password:</label>
+            <div class="col-md-8">
+              <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+                class="form-control" formControlName="confirmPassword"
+                [ngClass]="{'is-invalid': isInvalid('confirmPassword'), 'is-valid': isValid('confirmPassword')}">
+              <span class="text-danger" *ngIf="isFieldEmpty('confirmPassword')">Date of Birth can't be blank</span>
+              <span class="text-danger" *ngIf="isInvalidCompare('confirmPassword')">Password and Confirm Password do not
+                match</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label class="col-md-4 col-form-label">Gender:</label>
+            <div class="col-md-8">
+              <div class="form-check-label form-check-inline" *ngFor="let gender of genders">
+                <input type="radio" name="gender" [id]="gender" [value]="gender" class="form-check-input"
+                  formControlName="gender">
+                <label [for]="gender" class="form-check-label">{{gender}}</label>
+              </div>
+              <span class="text-danger" *ngIf="isFieldEmpty('gender')">Please select gender</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="countryID" class="col-md-4 col-form-label">Country:</label>
+            <div class="col-md-8">
+              <select name="countryID" id="countryID" class="form-control" formControlName="countryID"
+                [ngClass]="{'is-invalid': isInvalid('countryID'), 'is-valid': isValid('countryID')}">
+                <option value="null">Please Select</option>
+                <option *ngFor="let country of countries" [value]="country.countryID">
+                  {{country.countryName}}
+                </option>
+              </select>
+              <span class="text-danger" *ngIf="isFieldEmpty('countryID')">Please select country</span>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label class="col-md-4 col-form-label"></label>
+            <div class="col-md-8">
+              <input type="checkbox" name="receiveNewsLetters" id="receiveNewsLetters" value="true"
+                class="form-check-input" formControlName="receiveNewsLetters">
+              <label for="receiveNewsLetters" class="form-check-label">Receive News Letters</label>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label class="col-md-4 col-form-label">Skills:</label>
+            <div class="col-md-8" formArrayName="skills">
+              <div class="row" *ngFor="let skill of signUpForm.get('skills').controls; let i = index"
+                [formGroupName]="i">
+
+                <div class="col-5">
+                  <input type="text" name="skillName" id="skillName" placeholder="Skill Name"
+                    formControlName="skillName" class="form-control"
+                    [ngClass]="{'is-invalid': isInvalid('skills.'+i+'.skillName'), 'is-valid': isValid('skills.'+i+'.skillName')}">
+                </div>
+
+                <div class="col-4">
+                  <select name="level" id="level" formControlName="skillLevel" class="form-control"
+                    [ngClass]="{'is-invalid': isInvalid('skills.'+i+'.skillLevel'), 'is-valid': isValid('skills.'+i+'.skillLevel')}">
+                    <option value="null">Please Select</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Expert">Expert</option>
+                  </select>
+                </div>
+
+                <div class="col-3">
+                  <button class="btn btn-danger" type="button" (click)="onRemoveSkill(i)">Remove</button>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="button" (click)="onAddSkill()">Add Skill</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+          <button class="btn btn-success float-right">Create Account</button>
+          <div class="text-danger">{{registerError}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
