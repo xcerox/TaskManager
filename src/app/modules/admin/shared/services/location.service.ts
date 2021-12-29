@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/Operators';
+import { map } from 'rxjs/operators';
 import { Location } from '@admin/model/location';
 import { LocationUtil } from '@admin/shared/utils/location-util';
 

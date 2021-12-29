@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, } from 'rxjs';
-import { map } from 'rxjs/Operators';
+import { map } from 'rxjs/operators';
 import { Project } from '@admin/model/project'
 import { ProjectUtil } from '@admin/shared/utils/project-util';
 import { SearchOptions } from '@admin/model/search-options';
