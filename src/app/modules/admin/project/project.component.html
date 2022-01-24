@@ -1,0 +1,40 @@
+<div class="card card-primary">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-11">
+                <div># {{current.id}}</div>
+                <h5>{{current.name}}</h5>            
+            </div>
+            <div class="col-1">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body" [hidden]="isDetailHide">
+        <table class="table table-borderless">
+            <tr>
+                <th>Start Date</th>
+                <td>{{current.startDate}}</td>
+            </tr>
+            <tr>
+                <th>Team Size</th>
+                <td>{{current.teamSize}}</td>
+            </tr>
+            <tr>
+                <th>Client Location</th>
+                <td>{{current.location?.name}}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{current.status}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card-footer">
+        <button class="btn btn-info mr-2" data-toggle="modal" data-target="#newModal" (click)="onChooseProject()">Edit</button>&nbsp;
+        <button class="btn btn-warning" data-toggle="modal" data-target="#deleteModal" (click)="onChooseProject()">Delete</button>
+    </div>
+</div>
+<br />

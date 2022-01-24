@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, } from 'rxjs';
+import { Observable, Subject, } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from '@admin/model/project'
 import { ProjectUtil } from '@admin/shared/utils/project-util';
@@ -11,8 +11,17 @@ export class ProjectService {
 
   private PROJECT_URL: string = '/api/projects';
   private XSRF_TOKEN: string = 'X-XSRF-TOKEN';
+  private hideDetails: boolean = false;
+  public onDetailsChange$: Subject<boolean>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+    this.onDetailsChange$ = new Subject<boolean>();
+  }
+
+  toggleDetails(): void {
+    this.hideDetails = !this.hideDetails;
+    this.onDetailsChange$.next(this.hideDetails);
+  }
 
   getAll(): Observable<Array<Project>> {
     return this.httpClient.get<Response>(this.PROJECT_URL).pipe(map((data: any) => data.map(ProjectUtil.objectToProject)));

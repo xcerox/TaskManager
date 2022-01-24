@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Project } from '@admin/model/project';
 import { ProjectService } from '@admin/service/project.service';
 import { ProjectUtil } from '@admin/shared/utils/project-util';
@@ -6,6 +6,7 @@ import { SearchOptions } from '@admin/model/search-options';
 import { LocationService } from '@admin/service/location.service';
 import { Location } from '@admin/model/location';
 import { NgForm } from '@angular/forms';
+import { ProjectComponent } from '@admin/project/project.component';
 
 @Component({
   selector: 'projects',
@@ -96,4 +97,9 @@ export class ProjectsComponent implements OnInit {
   onDeleteConfirmed(){
     this.projectService.delete(this.project).subscribe(() => this.getProjects());
   }
+
+  onToogleDetails(){
+    this.projectService.toggleDetails();
+  }
+
 }

@@ -24,38 +24,25 @@
     </div>
   </div>
   <div class="col-8 mx-auto mb-2">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#newModal" (click)="onOpenCreateModal()">
-      Create Project
-    </button>
+    <div class="row">
+      <div class="col-2">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#newModal" (click)="onOpenCreateModal()">
+          Create Project
+        </button>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-secondary" (click)="onToogleDetails()">Hide/Show Details</button>    
+      </div>
+    </div>
   </div>
   <div class="col-8 mx-auto">
-    <table class="table">
-      <thead>
-        <th></th>
-        <th>Project ID</th>
-        <th>Project Name</th>
-        <th>Date of Start</th>
-        <th>Team Size</th>
-        <th>Client Location</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let project of projects">
-          <td>
-            <button class="btn btn-info mr-2" data-toggle="modal" data-target="#newModal"
-              (click)="onChooseProject(project.id)">Edit</button>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#deleteModal"
-              (click)="onChooseProject(project.id)">Delete</button>
-          </td>
-          <td>{{project.id}}</td>
-          <td>{{project.name}}</td>
-          <td>{{project.startDate}}</td>
-          <td>{{project.teamSize}}</td>
-          <td>{{project.location.name}}</td>
-          <td>{{project.status}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let project of projects">
+        <project [currentProject]="project" (onChoose)="onChooseProject($event)">
+          <check-box-printer></check-box-printer>
+        </project>
+      </div>
+    </div>
   </div>
 </div>
 

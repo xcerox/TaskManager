@@ -9,10 +9,12 @@ import { ProjectService } from '@admin/service/project.service';
 import { DashboardService } from '@admin/service/dashboard.service';
 import { FormsModule } from '@angular/forms';
 import { LocationService } from '@admin/service/location.service';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksComponent } from '@admin/tasks/tasks.component';
+import { ProjectComponent } from '@admin/project/project.component';
+import { CheckBoxPrinterComponent } from '@admin/shared/components/check-box-printer'; 
 
 @NgModule({
-  declarations: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent],
+  declarations: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent, ProjectComponent, CheckBoxPrinterComponent],
   exports: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent],
   imports: [
     CommonModule,
