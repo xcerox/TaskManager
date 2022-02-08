@@ -4,7 +4,7 @@ export interface Project {
     id: number;
     name: string;
     startDate: string;
-    teamSize: string;
+    teamSize: number;
     isActive: boolean;
     status: string;
     locationId: number;

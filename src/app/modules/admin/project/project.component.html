@@ -19,7 +19,10 @@
             </tr>
             <tr>
                 <th>Team Size</th>
-                <td>{{current.teamSize}}</td>
+                <td> 
+                    <span>({{current.teamSize | number}}) </span>
+                    <span class="text-info">{{current.teamSize | numberToWords}}</span>
+                </td>
             </tr>
             <tr>
                 <th>Client Location</th>

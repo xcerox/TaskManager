@@ -11,10 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { LocationService } from '@admin/service/location.service';
 import { TasksComponent } from '@admin/tasks/tasks.component';
 import { ProjectComponent } from '@admin/project/project.component';
-import { CheckBoxPrinterComponent } from '@admin/shared/components/check-box-printer'; 
+import { CheckBoxPrinterComponent } from '@admin/shared/components/check-box-printer';
+import { NumberToWordsPipe } from './shared/pipes/numberToWords';
 
 @NgModule({
-  declarations: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent, ProjectComponent, CheckBoxPrinterComponent],
+  declarations: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent, ProjectComponent, CheckBoxPrinterComponent, NumberToWordsPipe],
   exports: [DashboardComponent, MyProfileComponent, AboutComponent, ProjectsComponent, TasksComponent],
   imports: [
     CommonModule,
