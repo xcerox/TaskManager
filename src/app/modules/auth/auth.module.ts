@@ -10,12 +10,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CountryService } from './shared/services/country.service';
 import { SignUpValidatorService } from './shared/services/sign-up-validator.service';
 import { AlertDirective } from './shared/directives/alert';
+import { RepeaterDirective } from './shared/directives/repeater';
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignUpComponent,
     AlertDirective,
+    RepeaterDirective,
   ],
   imports: [
     CommonModule,

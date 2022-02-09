@@ -23,8 +23,11 @@
   
           </div>
   
-          <div class="card-footer text-right">
+          <div class="card-footer text-right"> 
             <button class="btn btn-primary" (click)="onLogin()">Login</button>
+            <div *ngIf="false">
+              <div *appRepeater="10; let index" >{{index}}</div>
+            </div>
           </div>
         </div>
       </div>
