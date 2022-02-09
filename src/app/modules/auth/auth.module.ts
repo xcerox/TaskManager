@@ -9,11 +9,13 @@ import { JwtInterceptorService } from '@auth/service/jwt-interceptor.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CountryService } from './shared/services/country.service';
 import { SignUpValidatorService } from './shared/services/sign-up-validator.service';
+import { AlertDirective } from './shared/directives/alert';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    AlertDirective,
   ],
   imports: [
     CommonModule,
