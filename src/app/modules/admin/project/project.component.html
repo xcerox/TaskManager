@@ -38,6 +38,7 @@
     <div class="card-footer">
         <button class="btn btn-info mr-2" data-toggle="modal" data-target="#newModal" (click)="onChooseProject()">Edit</button>&nbsp;
         <button class="btn btn-warning" data-toggle="modal" data-target="#deleteModal" (click)="onChooseProject()">Delete</button>
+        <a class="ml-2 btn btn-primary" [routerLink]="['/admin', 'projects', 'view', current.id]" >Learn More</a>
     </div>
 </div>
 <br />

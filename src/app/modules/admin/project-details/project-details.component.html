@@ -1,0 +1,39 @@
+<div class="row mt-3">
+    <div class="col-md-8 col-lg-6 col-xl-5 mx-auto">
+      <div class="card card-primary mb-1">
+  
+        <div class="card-header">
+          <div>#{{current.id}}</div>
+          <h5>{{current.name}}</h5>
+        </div>
+  
+        <div class="card-body">
+          <table class="table table-borderless table-sm">
+            <tr>
+              <th>Date of Start</th>
+              <td>{{current.startDate}}</td>
+            </tr>
+            <tr>
+              <th>Team Size</th>
+              <td>
+                <span>{{current.teamSize | number}} </span>
+                <span class="text-info">{{current.teamSize | numberToWords}}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Client Location</th>
+              <td>{{current.location?.name}}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{{current.status}}</td>
+            </tr>
+          </table>
+        </div>
+  
+        <div class="card-footer">
+          <a class="btn btn-info" [routerLink]=" [ '/projects' ] ">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>

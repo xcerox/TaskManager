@@ -43,4 +43,8 @@ export class ProjectService {
   findBy(options: SearchOptions): Observable<Array<Project>> {
     return this.httpClient.get<Response>(`${this.PROJECT_URL}/search/${options.field}/${options.value}`, {responseType: 'json'}).pipe(map((data: any) => data.map(ProjectUtil.objectToProject)));
   }
+
+  findById(id: number): Observable<Project>{
+    return this.httpClient.get<Project>(`${this.PROJECT_URL}/searchbyprojectid/${id}`, { responseType: "json" }).pipe(map(ProjectUtil.objectToProject));
+  }
 }

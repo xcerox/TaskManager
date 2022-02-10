@@ -7,14 +7,22 @@ import { LoginComponent } from '@auth/login/login.component';
 import { CanActivateGuardService } from '@auth/service/can-activate-guard.service';
 import { SignUpComponent } from '@auth/sign-up/sign-up.component';
 import { TasksComponent } from '@admin/tasks/tasks.component';
+import { ProjectDetailsComponent } from '@admin/project-details';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
-  { path: "dashboard", component: DashboardComponent, canActivate: [CanActivateGuardService], data: { role: "Admin" } },
-  { path: "about", component: AboutComponent },
-  { path: "projects", component: ProjectsComponent, canActivate: [CanActivateGuardService], data: { role: "Admin" } },
   { path: "signup", component: SignUpComponent },
-  { path: "tasks", component: TasksComponent, canActivate: [CanActivateGuardService], data: { role: "Employee" } },
+  { path: "about", component: AboutComponent },
+  { path: "admin", canActivate: [CanActivateGuardService], data: { role: "Admin" }, children: [
+      { path: "dashboard", component: DashboardComponent },
+      { path: "projects", component: ProjectsComponent },
+      { path: "projects/view/:projectId", component: ProjectDetailsComponent },
+    ]
+  },
+  { path: "employee", canActivate: [CanActivateGuardService], data: { role: "Employee" }, children: [
+      { path: "tasks", component: TasksComponent }
+    ]
+  },
   { path: "", redirectTo: "login", pathMatch: "full" },
 ];
 

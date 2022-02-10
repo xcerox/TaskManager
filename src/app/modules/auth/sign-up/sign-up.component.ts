@@ -68,7 +68,7 @@ export class SignUpComponent implements OnInit {
     {
       const newUser = <NewUser>this.signUpForm.value;
       this.authService.register(newUser).subscribe(
-        () => this.router.navigate(["tasks"]), 
+        () => this.router.navigate(["/employee","tasks"]), 
         () => this.registerError = "Unable to submit"
       );
     }
