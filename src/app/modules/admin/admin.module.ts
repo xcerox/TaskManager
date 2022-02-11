@@ -14,14 +14,33 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { JwtInterceptorProvider } from '@auth/shared/utils/providers';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ClientLocationsComponent } from './client-locations';
+import { CounriesComponent } from './counries';
+import { MastersComponent } from './masters';
+import { TaskPrioritiesComponent } from './task-priorities';
+import { TaskStatusComponent } from './task-status';
+import { ComponentLoaderDirective } from './shared/directives/component-loader/component-loader.directive';
 
 @NgModule({
-  declarations: [DashboardComponent, MyProfileComponent, ProjectsComponent, ProjectComponent, CheckBoxPrinterComponent, NumberToWordsPipe, ProjectDetailsComponent],
-  exports: [DashboardComponent, MyProfileComponent, ProjectsComponent, ProjectDetailsComponent],
+  declarations: [
+    DashboardComponent, 
+    MyProfileComponent, 
+    ProjectsComponent, 
+    ProjectComponent, 
+    CheckBoxPrinterComponent, 
+    NumberToWordsPipe, 
+    ProjectDetailsComponent, 
+    CounriesComponent, 
+    ClientLocationsComponent, 
+    TaskPrioritiesComponent, 
+    TaskStatusComponent, 
+    MastersComponent, 
+    ComponentLoaderDirective
+  ],exports: [DashboardComponent, MyProfileComponent, ProjectsComponent, ProjectDetailsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     AdminRoutingModule
   ],
   providers: [ProjectService, DashboardService, LocationService, JwtInterceptorProvider],
