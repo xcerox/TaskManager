@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { JwtInterceptorProvider } from '@auth/shared/utils/providers';
 import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
@@ -23,6 +24,6 @@ import { AdminRoutingModule } from './admin-routing.module';
     FormsModule, 
     AdminRoutingModule
   ],
-  providers: [ProjectService, DashboardService, LocationService],
+  providers: [ProjectService, DashboardService, LocationService, JwtInterceptorProvider],
 })
 export class AdminModule { }

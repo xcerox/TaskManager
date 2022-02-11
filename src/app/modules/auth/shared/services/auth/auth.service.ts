@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   getUserName(): string {
-    return this.decodeToken().userName;
+    return this.decodeToken()?.userName;
   }
 
   private decodeToken():any {
@@ -51,7 +51,7 @@ export class AuthService {
   };
 
   isRoleExpected(componentRole: string): boolean {
-    return  RoleUtils.getValuePerRole(componentRole) >= RoleUtils.getValuePerRole(this.decodeToken().role);
+    return  RoleUtils.getValuePerRole(componentRole) >= RoleUtils.getValuePerRole(this.decodeToken()?.role);
   }
 
   getUserByEmail(email: string): Observable<any> {

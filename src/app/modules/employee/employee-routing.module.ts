@@ -5,7 +5,7 @@ import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   {
-    path: "employee", canActivate: [CanActivateGuardService], data: { role: "Employee" }, children: [
+    path: "", canActivate: [CanActivateGuardService], data: { role: "Employee" }, children: [
       { path: "tasks", component: TasksComponent }
     ]
   },

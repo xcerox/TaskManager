@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AdminModule } from './modules/admin/admin.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from '@auth/auth.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { EmployeeModule } from './modules/employee/employee.module';
-import { JwtInterceptorService } from '@auth/shared/services/jwt-interceptor';
+import { JwtInterceptorProvider } from '@auth/shared/utils/providers';
 
 @NgModule({
   declarations: [
@@ -17,8 +15,6 @@ import { JwtInterceptorService } from '@auth/shared/services/jwt-interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
-    EmployeeModule,
     AuthModule,
     JwtModule.forRoot({
       config: {
@@ -28,13 +24,7 @@ import { JwtInterceptorService } from '@auth/shared/services/jwt-interceptor';
       }
     })
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
-      multi: true
-    }
-  ],
+  providers: [ JwtInterceptorProvider ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
