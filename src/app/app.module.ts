@@ -8,6 +8,7 @@ import { AuthModule } from '@auth/auth.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptorService } from '@auth/service/jwt-interceptor.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { EmployeeModule } from './modules/employee/employee.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     BrowserModule,
     AppRoutingModule,
     AdminModule,
+    EmployeeModule,
     AuthModule,
     JwtModule.forRoot({
       config: {

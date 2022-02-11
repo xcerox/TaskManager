@@ -11,6 +11,7 @@ import { CountryService } from './shared/services/country.service';
 import { SignUpValidatorService } from './shared/services/sign-up-validator.service';
 import { AlertDirective } from './shared/directives/alert';
 import { RepeaterDirective } from './shared/directives/repeater';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RepeaterDirective } from './shared/directives/repeater';
     SignUpComponent,
     AlertDirective,
     RepeaterDirective,
+    AboutComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,7 @@ import { RepeaterDirective } from './shared/directives/repeater';
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports: [],
+  exports: [ LoginComponent, SignUpComponent, AboutComponent],
   providers: [AuthService, CanActivateGuardService, JwtInterceptorService, CountryService, SignUpValidatorService],
 })
 export class AuthModule { }
