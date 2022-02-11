@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateGuardService } from '@auth/shared/services/can-activate-guard.service';
+import { CanActivateGuardService } from '@auth/shared/services/can-activate-guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectDetailsComponent } from './project-details';
 import { ProjectsComponent } from './projects/projects.component';

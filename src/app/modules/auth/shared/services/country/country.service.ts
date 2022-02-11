@@ -1,12 +1,14 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Country } from '@auth/shared/models/country';
 import { Observable } from 'rxjs';
-import { Country } from '../models/country';
+
 
 @Injectable()
 export class CountryService {
 
-  httpClient!: HttpClient;
+  private httpClient: HttpClient;
+  
   constructor(private httpBackend: HttpBackend) { 
     this.httpClient = new HttpClient(httpBackend);
   }

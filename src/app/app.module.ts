@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from '@auth/auth.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptorService } from '@auth/service/jwt-interceptor.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { EmployeeModule } from './modules/employee/employee.module';
+import { JwtInterceptorService } from '@auth/shared/services/jwt-interceptor';
 
 @NgModule({
   declarations: [

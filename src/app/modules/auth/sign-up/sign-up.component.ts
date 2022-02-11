@@ -3,9 +3,10 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Country } from '@auth/shared/models/country';
 import { NewUser } from '@auth/shared/models/new-user';
-import { AuthService } from '@auth/shared/services/auth.service';
-import { CountryService } from '@auth/shared/services/country.service';
-import { SignUpValidatorService } from '@auth/shared/services/sign-up-validator.service';
+import { AuthService } from '@auth/shared/services/auth';
+import { CountryService } from '@auth/shared/services/country';
+import { SignUpValidatorService } from '@auth/shared/services/sign-up-validator';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +20,9 @@ export class SignUpComponent implements OnInit {
   countries: Array<Country> = [];
   registerError: string = "";
 
-  constructor(private countryService: CountryService, private formBuilder: FormBuilder, private singUpValidatorService: SignUpValidatorService, private authService: AuthService, private router: Router) { }
+  constructor(private countryService: CountryService, private formBuilder: FormBuilder, 
+    private singUpValidatorService: SignUpValidatorService, 
+    private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 

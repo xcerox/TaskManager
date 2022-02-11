@@ -1,11 +1,11 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NewUser } from '@auth/shared/models/new-user';
+import { User } from '@auth/shared/models/user';
+import { RoleUtils } from '@auth/shared/utils/role-utils';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NewUser } from '../models/new-user';
-import { User } from '../models/user';
-import { RoleUtils } from '../utils/role-utils';
 
 @Injectable()
 export class AuthService {
