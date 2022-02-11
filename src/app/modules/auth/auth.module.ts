@@ -13,6 +13,7 @@ import { CanActivateGuardService } from './shared/services/can-activate-guard';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor';
 import { CountryService } from './shared/services/country';
 import { SignUpValidatorService } from './shared/services/sign-up-validator';
+import { DiscardChangesGuardService } from './shared/services/discard-changes-guard';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,6 @@ import { SignUpValidatorService } from './shared/services/sign-up-validator';
     ReactiveFormsModule,
   ],
   exports: [ LoginComponent, SignUpComponent, AboutComponent],
-  providers: [AuthService, CanActivateGuardService, JwtInterceptorService, CountryService, SignUpValidatorService, RouterLoggerService],
+  providers: [AuthService, CanActivateGuardService, JwtInterceptorService, CountryService, SignUpValidatorService, RouterLoggerService, DiscardChangesGuardService],
 })
 export class AuthModule { }

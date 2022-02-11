@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ValidateDiscardChanges } from '@auth/shared/interfaces/validate-discard-changes';
 import { Country } from '@auth/shared/models/country';
 import { NewUser } from '@auth/shared/models/new-user';
 import { AuthService } from '@auth/shared/services/auth';
@@ -13,12 +14,13 @@ import { SignUpValidatorService } from '@auth/shared/services/sign-up-validator'
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, ValidateDiscardChanges {
 
   signUpForm: FormGroup | any = null;
   genders = ["male", "female"];
   countries: Array<Country> = [];
   registerError: string = "";
+  canLeave: boolean = true;
 
   constructor(private countryService: CountryService, private formBuilder: FormBuilder, 
     private singUpValidatorService: SignUpValidatorService, 
@@ -48,6 +50,8 @@ export class SignUpComponent implements OnInit {
     {
       validators: [ this.singUpValidatorService.compareValidator("confirmPassword", "password")]
     });
+
+    this.signUpForm?.valueChanges.subscribe(() => this.canLeave = false);
   }
 
   onAddSkill()

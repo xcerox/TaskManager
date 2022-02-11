@@ -2,15 +2,12 @@ import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RouterLoggerService {
   private ROUTER_LOGGER: string = "/api/routerlogger";
   private CONTENT_TYPE: string = "content-type";
 
   private httpClient: HttpClient;
-  private currentUserName: string = ""; 
 
   constructor(private httpBackend: HttpBackend) { 
     this.httpClient = new HttpClient(httpBackend);
