@@ -28,7 +28,8 @@ export class SignUpComponent implements OnInit, ValidateDiscardChanges {
 
   ngOnInit(): void {
 
-    this.countryService.getCountries().subscribe(countries => {
+    this.countryService.getAll().subscribe(countries => {
+      debugger;
       this.countries = countries;
     }, console.error);
 

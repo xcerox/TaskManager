@@ -1,4 +1,4 @@
-import { Message } from '@admin/shared/interfaces/message';
+import { LoadableComponent } from '@admin/shared/interfaces/LoadableComponent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,16 +6,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './task-priorities.component.html',
   styleUrls: ['./task-priorities.component.scss']
 })
-export class TaskPrioritiesComponent implements OnInit, Message {
-
-  message: string = "";
+export class TaskPrioritiesComponent implements OnInit, LoadableComponent {
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  setMessage(value: string): void {
-      this.message = value;
   }
 }

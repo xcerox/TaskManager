@@ -1,4 +1,4 @@
-import { Message } from '@admin/shared/interfaces/message';
+import { LoadableComponent } from '@admin/shared/interfaces/LoadableComponent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,17 +6,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './client-locations.component.html',
   styleUrls: ['./client-locations.component.scss']
 })
-export class ClientLocationsComponent implements OnInit, Message {
-
-  message: string = "";
+export class ClientLocationsComponent implements OnInit, LoadableComponent {
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  setMessage(value: string): void {
-      this.message = value;
   }
 
 }

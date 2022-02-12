@@ -1,11 +1,11 @@
 import { ClientLocationsComponent } from '@admin/client-locations';
 import { ComponentLoaderDirective } from '@admin/shared/directives/component-loader';
-import { Message } from '@admin/shared/interfaces/message';
+import { LoadableComponent } from '@admin/shared/interfaces/LoadableComponent';
 import { MenuItem } from '@admin/shared/models';
 import { TaskPrioritiesComponent } from '@admin/task-priorities';
 import { TaskStatusComponent } from '@admin/task-status';
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { CounriesComponent } from '../counries';
+import { Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { CountriesComponent } from '../countries';
 @Component({
   selector: 'app-masters',
   templateUrl: './masters.component.html',
@@ -14,7 +14,7 @@ import { CounriesComponent } from '../counries';
 export class MastersComponent implements OnInit {
 
   menuItems: Array<MenuItem> = [
-    {name: "Countries", label: "Countries", component: CounriesComponent},
+    {name: "Countries", label: "Countries", component: CountriesComponent},
     {name: "ClientLocations", label: "Client Locations", component: ClientLocationsComponent},
     {name: "TaskPriorities", label: "Task Priorities", component: TaskPrioritiesComponent},
     {name: "TaskStatus", label: "Task Status", component: TaskStatusComponent}
@@ -26,36 +26,39 @@ export class MastersComponent implements OnInit {
   @ViewChildren(ComponentLoaderDirective)
   componentLoaders!: QueryList<ComponentLoaderDirective>;
 
-  constructor(private componentFactory: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}
+  constructor(private componentFactory: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
   }
 
   onClickItem(item: MenuItem): void {
     this.currentItem = item;
-    
+
     if (!this.tabs.has(item)) {
       this.tabs.add(item);
-      this.cdr.detectChanges();
-      this.onChange();
+      setTimeout(() => this.onChange(), 100);
     }
-
+    
   }
 
-  private onChange() {
+  private onChange(): void {
     const componentLoaderArray = this.componentLoaders.toArray();
-    if (componentLoaderArray.length > 0) {
-      const componentFactory = this.componentFactory.resolveComponentFactory(this.currentItem.component);
-      const { viewContainerRef } = componentLoaderArray[this.tabs.size - 1];
-      viewContainerRef.clear();
-      const componentRef = viewContainerRef.createComponent(componentFactory);
-      this.setDefaultValueToComponent(componentRef);
-    }
+    const componentFactory = this.componentFactory.resolveComponentFactory(this.currentItem.component);
+    const { viewContainerRef } = componentLoaderArray[this.tabs.size - 1];
+    this.currentItem.containerRef = viewContainerRef;
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+    this.setDefaultValueToComponent(componentRef);
   }
 
-
-  private setDefaultValueToComponent(component: ComponentRef<Message>): void {
+  private setDefaultValueToComponent(component: ComponentRef<LoadableComponent>): void {
     const { instance } = component;
-    instance.setMessage(this.currentItem.label);
+  }
+
+  onclose(tab: MenuItem): void {
+    tab.containerRef?.remove();
+    this.tabs.delete(tab);
+    if (tab == this.currentItem) {
+      this.currentItem = <MenuItem>{};
+    }
   }
 }

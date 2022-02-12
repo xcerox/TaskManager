@@ -104,8 +104,8 @@
               <select name="countryID" id="countryID" class="form-control" formControlName="countryID"
                 [ngClass]="{'is-invalid': isInvalid('countryID'), 'is-valid': isValid('countryID')}">
                 <option value="null">Please Select</option>
-                <option *ngFor="let country of countries" [value]="country.countryID">
-                  {{country.countryName}}
+                <option *ngFor="let country of countries" [value]="country.id">
+                  {{country.name}}
                 </option>
               </select>
               <span class="text-danger" *ngIf="isFieldEmpty('countryID')">Please select country</span>

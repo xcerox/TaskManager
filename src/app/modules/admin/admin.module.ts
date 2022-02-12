@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { JwtInterceptorProvider } from '@auth/shared/utils/providers';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ClientLocationsComponent } from './client-locations';
-import { CounriesComponent } from './counries';
+import { CountriesComponent } from './countries';
 import { MastersComponent } from './masters';
 import { TaskPrioritiesComponent } from './task-priorities';
 import { TaskStatusComponent } from './task-status';
@@ -30,7 +30,7 @@ import { ComponentLoaderDirective } from './shared/directives/component-loader/c
     CheckBoxPrinterComponent, 
     NumberToWordsPipe, 
     ProjectDetailsComponent, 
-    CounriesComponent, 
+    CountriesComponent, 
     ClientLocationsComponent, 
     TaskPrioritiesComponent, 
     TaskStatusComponent, 

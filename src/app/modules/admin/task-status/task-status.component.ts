@@ -1,4 +1,4 @@
-import { Message } from '@admin/shared/interfaces/message';
+import { LoadableComponent } from '@admin/shared/interfaces/LoadableComponent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,16 +6,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './task-status.component.html',
   styleUrls: ['./task-status.component.scss']
 })
-export class TaskStatusComponent implements OnInit, Message {
-
-  message: string = "";
+export class TaskStatusComponent implements OnInit, LoadableComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-  setMessage(value: string): void {
-      this.message = value;
-  }
+  ngOnInit(): void { }
 }

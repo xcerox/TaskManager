@@ -1,8 +1,9 @@
-import { Component, Type } from "@angular/core";
-import { Message } from "../interfaces/message";
+import { Component, Type, ViewContainerRef } from "@angular/core";
+import { LoadableComponent } from "../interfaces/LoadableComponent";
 
 export interface MenuItem {
     name: string;
     label: string;
-    component: Type<Message>;
+    component: Type<LoadableComponent>;
+    containerRef?: ViewContainerRef;
 }
